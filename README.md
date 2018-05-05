@@ -1,4 +1,0 @@
-# datingApp
-
-
-Ricky Wuz Here
