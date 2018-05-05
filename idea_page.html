@@ -1,59 +1,58 @@
-<!document <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dating App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel = "stylesheet"href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-    <script src="assets/javascript/javascript.js"></script>
-     <!-- Compiled and minified CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-
-     <!-- Compiled and minified JavaScript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-             
 </head>
+
 <body>
-        <div class="container">
-                <nav>
-                        <div class="nav-wrapper">
-                          <a href="index.html" class="brand-logo"><i class="material-icons">ideas for</i>date app</a>
-                          <!-- <ul class="right hide-on-med-and-down">
-                            <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-                            <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-                            <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-                            <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
-                          </ul> -->
-                        </div>
-                      </nav>
-                <!-- Page Content goes here -->
-                  <div id="table-of-ideas">
-                        <table class="highlight main-page-buttons">
-                                <thead>
-                                  <tr>
-                                      <th>Random Idea List </th>
-                                      
-                                  </tr>
-                                </thead>
-                        
-                                <tbody>
-                                  <tr>
-                                    <td>Check the new club on Randolph</td>
-                                     
-                                    </tr>
-                                    <tr>
-                                    <td>Go to Denny's Tavern on Armitage and Damen</td>
-                                        
-                                    </tr>
-                                     
-                                    
-                                  
-                                </tbody>
-                              </table>
-                  </div>
-                 
+  <div class="container">
+
+      <nav>
+        <div class="nav-wrapper center-align">
+          <h1><a href="index.html">Date Idea Generator</a><h1>
         </div>
-   
+      </nav>
+
+
+    <!-- The dropdown category button should be here for user selection -->
+    <div id="main-page-buttons">
+      <ul id= "dropdown1" class ="dropdown-content">
+          <li><option value="category1">category 1</option></li>
+          <li><option value="category2">category 2</option></li>
+          <li><option value="category3">category 3</option></li>
+          <li><option value="category4">category 4</option></li>
+          <li><option value="category5">category 5</option></li>
+      </ul>
+        
+      <a class = "btn waves-effect waves-teal btn-flat dropdown-button" id="btn-category-dropdown" href="#" data-activates = "dropdown1">Dropdown
+        <i class = "mdi-navigation-arrow-drop-down right"></i></a>
+
+        <button class="btn waves-effect waves-light" type="submit" id="submit-btn" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+                  
+    </div>
+
+
+
+
+    <div id="foursquare"></div>
+
+    <div id="googlemap"></div>
+
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+  <script src="assets/javascript/javascript.js"></script>
 </body>
 </html>
