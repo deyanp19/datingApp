@@ -1,1 +1,117 @@
-"Hello"
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#">About</a></li>
+            <li role="presentation"><a href="#">Contact</a></li>
+          </ul>
+          <br>
+
+    <!-- Sample Nav Bar page links can be whatever. I'm not certain about the different pages to navigate -->
+</head>
+
+<body>
+    <div class="container text-center jumbotron">
+        <h1>D8 Nite!</h1>
+        <p>Don't know what to do for a date? Well, we've got you covered with infinite ideas!</p>
+    </div>
+
+
+    
+    <div class="container">
+        <div class="col-lg-12">
+            <!-- Large button group -->
+            <div class="row-lg-9 btn-group">
+                <button class="btn btn-danger btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Suggestions
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <!-- <li> 
+                        **Add links to other pages of the site?**
+                        **Maybe like images of locations?**
+
+                        <a href="#">Action</a>
+                    </li>
+                    <li>
+                        <a href="#">Another action</a>
+                    </li>
+                    <li>
+                        <a href="#">Something else here</a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="#">Separated link</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+        <br>
+
+        <div class="row-lg-12">
+            <div class="col-lg-9">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Doozy Ideas</h3>
+                    </div>
+                    <div class="panel-body" id="date">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <!-- Just place holders.
+                                    Just leaving it for design purposes
+                                    I was thinking maybe append parts of the AJAX calls into the table to simply things (possibly)-->
+                                    <th scope="col">Idea</th>
+                                    <th scope="col">What is it?</th>
+                                    <th scope="col">Location</th>
+                                    <th scope="col">Cost</th>
+                                    <th scope="col">Review</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="panel panel-danger">
+                <div class="panel-heading">Add Your Own Date Idea!</div>
+                <div class="form-group">
+                    <br>
+                    <label for="exampleInputEmail1">Date Idea </label>
+                    <input type="text" id="idea-input" class="form-control" placeholder="Date Idea">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">What is it?</label>
+                    <input type="text" id="whatIsIt-input" class="form-control" placeholder="Description">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputtext">Location</label>
+                    <input type="text" id="location-input" class="form-control" placeholder="Location">
+                </div>
+                <input class="btn btn-danger" id="add-idea" type="submit" value="Submit">
+            </div>
+        </div>
+    </div>
+</body>
+<hr>
+
+<footer>
+    Copyright: 
+</footer>
+
+</html>

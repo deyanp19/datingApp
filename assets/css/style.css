@@ -1,0 +1,16 @@
+body{
+    background-image: url("../images/hearts.jpg");
+    background-attachment: fixed;
+}
+
+.jumbotron{
+    background-color:pink;
+}
+
+.form-group{
+    padding-left: 10px;
+}
+
+.btn{
+    margin-left: 10px;
+}
