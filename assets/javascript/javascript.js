@@ -12,3 +12,23 @@ console.log("hello");
   firebase.initializeApp(config);
 
   var database = firebase.database().ref();
+
+/*   API example with longitude latitude search */
+
+/* https://api.foursquare.com/v2/venues/explore?client_id=E25VOFWZGUJNVIDM5O5UR2WINJNWF0CAKHVWRW1VP1TCMLV4&client_secret=QL0A3ZJS3WVJZ5NGZLTTNKNVG2FWE0T2SFSPYOCHUNT01TJB&ll=40.7243,-74.0018&v=20180323 */
+
+var client_id = "client_id=E25VOFWZGUJNVIDM5O5UR2WINJNWF0CAKHVWRW1VP1TCMLV4&";
+var client_key = "client_secret=QL0A3ZJS3WVJZ5NGZLTTNKNVG2FWE0T2SFSPYOCHUNT01TJB&";
+var currentSelection;
+
+
+
+
+$(document).ready(function(){
+
+    // Gets the value of the current category for the date as a string
+    $("#submit-btn").click(function(){
+        currentSelection = $(".custom-select select").val();
+        console.log(currentSelection);
+    });
+});
