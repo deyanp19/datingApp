@@ -33,8 +33,8 @@ console.log("hello");
 
 var client_id = "client_id=E25VOFWZGUJNVIDM5O5UR2WINJNWF0CAKHVWRW1VP1TCMLV4&";
 var client_key = "client_secret=QL0A3ZJS3WVJZ5NGZLTTNKNVG2FWE0T2SFSPYOCHUNT01TJB&";
-var currentSelection;
-var query = "https://api.foursquare"
+var currentSelection; 
+
 
 
 
@@ -44,5 +44,22 @@ $(document).ready(function(){
     $("#submit-btn").click(function(){
         currentSelection = $(".custom-select select").val();
         console.log(currentSelection);
+
+        var queryURL = "https://api.foursquare.com/v2/venues/explore?" + client_id + client_key +"near=Chicago,IL&section=food&intent=checkin&time=any&v=20170505"
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+            console.log(response);
+            console.log(queryURL);
+        });
     });
+
+
+
+
+
+
+
 });
