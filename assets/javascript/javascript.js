@@ -1,5 +1,3 @@
-console.log("hello");
-
  // Initialize Firebase
  var config = {
     apiKey: "AIzaSyAM4Op2cHGkCwqhOhsnGJ-S4IkTQD5w-3U",
@@ -20,7 +18,7 @@ console.log("hello");
 
 // url for a sample query
 
-/* https://api.foursquare.com/v2/venues/search?client_id=E25VOFW ZGUJNVIDM5O5UR2WINJNWF0CAKHVWRW1VP1TCMLV4&client_secret=QL0A3ZJS3WVJZ5NGZLTTNKNVG2FWE0T2SFSPYOCHUNT01TJB&near=Chicago,IL&query=food&v=20180505 */
+/* https://api.foursquare.com/v2/venues/explore/?near=Chicago,IL&venuePhotos=1&limit=20&section=trendingtime=any&client_id=E25VOFWZGUJNVIDM5O5UR2WINJNWF0CAKHVWRW1VP1TCMLV4&client_secret=QL0A3ZJS3WVJZ5NGZLTTNKNVG2FWE0T2SFSPYOCHUNT01TJB&&v=20131124 */
 
 // url for the photos key in object
 
@@ -30,30 +28,73 @@ console.log("hello");
 
 /* https://igx.4sqi.net/img/user/100x100/QYGHTN2KNPTTUIEF.jpg */
 
-
-var client_id = "client_id=E25VOFWZGUJNVIDM5O5UR2WINJNWF0CAKHVWRW1VP1TCMLV4&";
-var client_key = "client_secret=QL0A3ZJS3WVJZ5NGZLTTNKNVG2FWE0T2SFSPYOCHUNT01TJB&";
-var currentSelection; 
-
-
-
-
 $(document).ready(function(){
-
+    var client_id = "client_id=E25VOFWZGUJNVIDM5O5UR2WINJNWF0CAKHVWRW1VP1TCMLV4&";
+    var client_key = "client_secret=QL0A3ZJS3WVJZ5NGZLTTNKNVG2FWE0T2SFSPYOCHUNT01TJB&";
+    var currentSelection; 
     // Gets the value of the current category for the date as a string
-    $("#submit-btn").click(function(){
+    $("#submit-btn").click(function(e){
+
+        // Assign the value of our the user's selection in the dropdown to a variable
         currentSelection = $(".custom-select select").val();
         console.log(currentSelection);
 
-        var queryURL = "https://api.foursquare.com/v2/venues/explore?" + client_id + client_key +"near=Chicago,IL&section=food&intent=checkin&time=any&v=20170505"
+        // Create the query string for the GET method to retrieve our json object
+        var queryURL = "https://api.foursquare.com/v2/venues/explore/?near=Chicago,IL&venuePhotos=1&limit=20&section=" + currentSelection + "&time=any&" + client_id + client_key + "&v=20131124"
 
+        console.log(queryURL);
+        // Empty array to push our random date list to
+        var dateList = [];
+
+        // A single item from our response to push to dateList
+        var dateItem;
+
+        // Pick one of the dateItems from dateList and assign it to this variable
+        var pickRandomDate;
+
+        // Pick a random index to get the random date object from pickRandomDate
+        var randomInt = Math.floor(Math.random() * (20 - 0) + 0);
+        
+        // Will need a venue Id from foursquare to get photo of the venue
+        var venueId;
+        
+
+        // Make a call to get the venue recommendation information
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function(response) {
-            console.log(response);
-            console.log(queryURL);
+        }).then(function(data) {
+            // get the items from the submission results
+            dateItem = data.response.groups[0].items;
+
+            // push each dateItem out of 20 (limit = 20 in queryURL) to push to the dateList
+            for (var i = 0; i < dateItem.length; i++) {
+                dateList.push(dateItem[i]);
+            }
+
+            console.log(dateList);
+            console.log(randomInt);
+            
+
+            // This will pick one single dateItem to get our information from
+            pickRandomDate = dateList[randomInt];
+            console.log(pickRandomDate);
+            
+            // Retrieve the venue ID (will need for photos and other API endpoints) and assign to variable
+            
+        
+        
+        
+        
+        
+        
+        e.preventDefault();
+        
         });
+
+        console.log(dateList);
+
+
     });
 
 
