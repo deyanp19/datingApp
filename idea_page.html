@@ -1,56 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dating App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel = "stylesheet"href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Dating App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 </head>
 
 <body>
   <div class="container">
 
-      <nav>
-        <div class="nav-wrapper center-align">
-          <h1><a href="index.html">Date Idea Generator</a><h1>
-        </div>
-      </nav>
+    <nav>
+      <div class="nav-wrapper center-align">
+        <h1>
+          <a href="index.html">Date Idea Generator</a>
+          <h1>
+      </div>
+    </nav>
 
 
     <!-- The dropdown category button should be here for user selection -->
     <div id="main-page-buttons">
       <div class="custom-select" id="dropdown" style="width:200px;">
-          <select>
-              <option value="coffee">Coffee</option>
-              <option value="fun">Fun</option>
-              <option value="shopping">Shopping</option>
-              <option value="nightlife">Nightlife</option>
-              <option value="food">Food</option>
-          </select>
-        </div>
+        <select>
+          <option value="coffee">Coffee</option>
+          <option value="fun">Fun</option>
+          <option value="shopping">Shopping</option>
+          <option value="nightlife">Nightlife</option>
+          <option value="food">Food</option>
+        </select>
+      </div>
 
-        <button class="btn waves-effect waves-light" type="submit" id="submit-btn" name="action">Submit
-        </button>
-                  
+      <button class="btn waves-effect waves-light" type="submit" id="submit-btn" name="action">Submit
+      </button>
+
     </div>
 
 
 
 
-    <div id="foursquare"></div>
+  </div>
 
-    <div id="googlemap"></div>
+  <div id="foursquare"></div>
 
+  <div id="googlemapdiv">
+    <p align="center">
+      <iframe id="googlemap" width="600" height="450" frameborder="0" style="border:0"  
+      allowfullscreen>
+      </iframe>
+    </p>
+  </div>
+
+  <div id="tablediv">
+    
   </div>
 
 
+
   <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+  </script>
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
   <script src="assets/javascript/javascript.js"></script>
 </body>
+
+<!-- src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDKcsgN-w_udSFRh-gzsY0CzArq7fMo-68&q=McDonalds,Chicago+IL" -->
+
 </html>

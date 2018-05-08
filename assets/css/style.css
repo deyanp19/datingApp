@@ -43,3 +43,7 @@ body select option {
     padding: 0 4px;
 } 
 
+#googlemapdiv {
+    height: 100%;
+}
+
