@@ -1,4 +1,4 @@
- // Initialize Firebase
+ /* // Initialize Firebase
  var config = {
     apiKey: "AIzaSyAM4Op2cHGkCwqhOhsnGJ-S4IkTQD5w-3U",
     authDomain: "datingapp-f81f6.firebaseapp.com",
@@ -9,7 +9,7 @@
   };
   firebase.initializeApp(config);
 
-  var database = firebase.database().ref();
+  var database = firebase.database().ref(); */
 
 /*   API example with longitude latitude search */
 
@@ -41,12 +41,12 @@ $(document).ready(function(){
         console.log(currentSelection);
 
         // Create the query string for the GET method to retrieve our json object
-        var queryURL = "https://api.foursquare.com/v2/venues/explore/?near=Chicago,IL&venuePhotos=1&limit=20&section=" + currentSelection + "&time=any&" + client_id + client_key + "&v=20131124"
+        var queryURL = "https://api.foursquare.com/v2/venues/explore/?near=Chicago,IL&venuePhotos=1&limit=20&section=" + currentSelection + "&time=any&" + client_id + client_key + "v=20131124"
         console.log(queryURL);
 
 
         var photosURL;
-
+        var photoImg;
         // Empty array to push our random date list to
         var dateList = [];
 
@@ -67,9 +67,8 @@ $(document).ready(function(){
             // Make a call to get the venue recommendation information
             $.ajax({
                 url: queryURL,
-                method: "GET"
-            })
-            .then(function(data) {
+                method: "GET",
+            }).then(function(data) {
                 // get the items from the submission results
                 dateItem = data.response.groups[0].items;
 
@@ -86,41 +85,45 @@ $(document).ready(function(){
 
                 photosURL = "https://api.foursquare.com/v2/venues/" + venueID + "/photos?" + client_id + client_key + "v=20131124";
 
-                console.log(dateList);
-                console.log(randomInt);
-                console.log(pickRandomDate);
-                console.log(venueID);
-                console.log(photosURL);
+                console.log(dateList); // array list of possible choices
+                console.log(randomInt); // integer to pick the random object
+                console.log(pickRandomDate); // pick the venue
+                console.log(venueID); // get the venue id --> necessary for ajax call for photo
+                console.log(photosURL); // use venue id to get the photosURL for ajax call
+
+                // Nest a second ajax call to get the photo to render
+                function getPhoto(){
+                    $.ajax({
+                        url: photosURL,
+                        method: "GET",
+                    }).then(function(photoData){
+
+                        var photo = photoData.response.photos.items[0];
+                        console.log(photo);
+
+                        photoImg = photo.prefix + "300x300" + photo.suffix;
+                        console.log(photoImg);
+
+                        // append the photo to the foursquare div
+                        $("#foursquare").html("<img src=" + photoImg + ">");
+                    });
+                
+                }
+
+                getPhoto();
             });
 
         }
 
-
-        function getPhoto(){
-            $.ajax({
-                url: photosURL,
-                method: "GET"
-            }).then(function(photoData){
-                console.log(photosData);
-            });
-        
-        }
 
         getVenueId();
-
-
-        // Assigns venueID and photosURL
-
        
-
-  
         e.preventDefault();
     });
 
-
-
-
-
-    
-
 });
+
+
+/* Things to do
+
+Make a table with all the information about the date idea or venue. Possible categories can include name of venue, rating, prices, hours, and location. */
