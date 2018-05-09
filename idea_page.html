@@ -24,8 +24,8 @@
 
 
     <!-- The dropdown category button should be here for user selection -->
-    <div id="main-page-buttons">
-      <div class="custom-select" id="dropdown" style="width:200px;">
+    <div id="main-page-buttons" class="center-align">
+      <div class="custom-select" id="dropdown"  style="width:200px;">
         <select>
           <option value="coffee">Coffee</option>
           <option value="outdoors">Outdoors</option>
@@ -40,25 +40,27 @@
       </button>
 
     </div>
+<div class="row" >
+
+<div id="foursquare" class="col s3" ></div>
 
 
-
-
-  </div>
-  <div id="foursquare"></div>
-
-
-
-  <div id="googlemapdiv">
+  <div id="googlemapdiv" class="image-gm col s6">
     <p align="center">
-      <iframe id="googlemap" width="600" height="450" frameborder="0" style="border:0" allowfullscreen>
+      <iframe id="googlemap" class="responsive-image">
       </iframe>
     </p>
   </div>
 
-  <div id="tablediv">
+  <div>
+    <table id="tablediv">
+      <!-- details of venue go in here -->
+    </table>
+  </div>
+
 
   </div>
+  
 
 
 
@@ -70,6 +72,6 @@
   <script src="assets/javascript/javascript.js"></script>
 </body>
 
-<!-- src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDKcsgN-w_udSFRh-gzsY0CzArq7fMo-68&q=McDonalds,Chicago+IL" -->
+
 
 </html>
