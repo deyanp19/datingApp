@@ -16,17 +16,6 @@
 
 
 $(document).ready(function () {
-    var coffeeArr = [
-        "q=Coffee+Lab,Evanston+IL",
-        "q=Backlot+Coffee,Evanston+IL",
-        "q=Unicorn+Cafe,Evanston+IL",
-        "q=Brothers+K+Coffeehouse,Evanston+IL",
-        "q=Peet's+Coffee,Evanston+IL",
-    ];
-
-    var mapsIframe = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDKcsgN-w_udSFRh-gzsY0CzArq7fMo-68&";
-
-
 
     /* https://igx.4sqi.net/img/user/100x100/QYGHTN2KNPTTUIEF.jpg */
 
@@ -41,9 +30,6 @@ $(document).ready(function () {
         // Create the query string for the GET method to retrieve our json object
         var queryURL = "https://api.foursquare.com/v2/venues/explore/?near=Chicago,IL&venuePhotos=1&limit=20&section=" + currentSelection + "&time=any&" + client_id + client_key + "v=20131124"
         console.log(queryURL);
-
-
-
 
 
         var photosURL;
@@ -94,23 +80,21 @@ $(document).ready(function () {
 
                 photosURL = "https://api.foursquare.com/v2/venues/" + venueID + "/photos?" + client_id + client_key + "v=20131124";
 
+                console.log(data);
                 console.log(dateList); // array list of possible choices
                 console.log(randomInt); // integer to pick the random object
                 console.log(pickRandomDate); // pick the venue
                 console.log(venueID); // get the venue id --> necessary for ajax call for photo
                 console.log(photosURL); // use venue id to get the photosURL for ajax call
 
+                var venueName = pickRandomDate.venue.name;
 
                 // Assign the value of our the user's selection in the dropdown to a variable
                 
+                var mapsIframe = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDKcsgN-w_udSFRh-gzsY0CzArq7fMo-68&q=";
 
-                if (currentSelection === "coffee") {
-                    var randomCoffee = coffeeArr[Math.floor(coffeeArr.length * Math.random())];
-                    console.log('this is our random coffee selection!!', randomCoffee);
-                    newSrc = mapsIframe.concat(randomCoffee);
-                    $("#googlemap").attr("src", newSrc);
-
-                };//end "coffee" if statement
+                newSrc = mapsIframe.concat(venueName);
+                $("#googlemap").attr("src", newSrc);
 
 
                 // Nest a second ajax call to get the photo to render
@@ -138,6 +122,9 @@ $(document).ready(function () {
         }
 
 
+        
+        
+        
         getVenueId();
 
         e.preventDefault();
@@ -148,5 +135,7 @@ $(document).ready(function () {
 
 /* Things to do
 
-Make a table with all the information about the date idea or venue. Possible categories can include name of venue, rating, prices, hours, and location. */
+Make a table with all the information about the date idea or venue. Possible categories can include name of venue, rating, prices, hours. */
+
+// pickRandomDate.
 
