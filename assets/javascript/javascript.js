@@ -25,6 +25,9 @@ $(document).ready(function () {
 
     // Gets the value of the current category for the date as a string
     $("#submit-btn").click(function (e) {
+        var currentSelection = $(".custom-select select").val();
+        console.log(currentSelection);
+
 
 
         // Create the query string for the GET method to retrieve our json object
@@ -48,11 +51,6 @@ $(document).ready(function () {
 
         // Will need a venue Id from foursquare to get photo of the venue
         var venueID;
-
-
-        var currentSelection = $(".custom-select select").val();
-        console.log(currentSelection);
-
 
 
 
