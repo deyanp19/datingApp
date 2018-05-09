@@ -26,6 +26,8 @@ $(document).ready(function () {
     // Gets the value of the current category for the date as a string
     $("#submit-btn").click(function (e) {
 
+        currentSelection = $(".custom-select select").val();
+        console.log(currentSelection);
 
         // Create the query string for the GET method to retrieve our json object
         var queryURL = "https://api.foursquare.com/v2/venues/explore/?near=Chicago,IL&venuePhotos=1&limit=20&section=" + currentSelection + "&time=any&" + client_id + client_key + "v=20131124"
@@ -50,8 +52,7 @@ $(document).ready(function () {
         var venueID;
 
 
-        var currentSelection = $(".custom-select select").val();
-        console.log(currentSelection);
+        
 
 
 
@@ -89,11 +90,12 @@ $(document).ready(function () {
 
                 var venueName = pickRandomDate.venue.name;
 
+                var filterVenueName = venueName.replace(/&/g, "and");
                 // Assign the value of our the user's selection in the dropdown to a variable
                 
                 var mapsIframe = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDKcsgN-w_udSFRh-gzsY0CzArq7fMo-68&q=";
 
-                newSrc = mapsIframe.concat(venueName);
+                newSrc = mapsIframe.concat(filterVenueName);
                 $("#googlemap").attr("src", newSrc);
 
 
