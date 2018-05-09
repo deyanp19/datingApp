@@ -33,7 +33,7 @@ $(document).ready(function () {
         var queryURL = "https://api.foursquare.com/v2/venues/explore/?near=Chicago,IL&venuePhotos=1&limit=20&section=" + currentSelection + "&time=any&" + client_id + client_key + "v=20131124"
         console.log(queryURL);
 
-
+        var detailsURL;
         var photosURL;
         var photoImg;
         // Empty array to push our random date list to
@@ -50,9 +50,6 @@ $(document).ready(function () {
 
         // Will need a venue Id from foursquare to get photo of the venue
         var venueID;
-
-
-        
 
 
 
@@ -81,12 +78,17 @@ $(document).ready(function () {
 
                 photosURL = "https://api.foursquare.com/v2/venues/" + venueID + "/photos?" + client_id + client_key + "v=20131124";
 
+                detailsURL = "https://api.foursquare.com/v2/venues/" + venueID + "?" + client_id + client_key + "v=20131124";
+
+
+
+
                 console.log(data);
                 console.log(dateList); // array list of possible choices
                 console.log(randomInt); // integer to pick the random object
                 console.log(pickRandomDate); // pick the venue
                 console.log(venueID); // get the venue id --> necessary for ajax call for photo
-                console.log(photosURL); // use venue id to get the photosURL for ajax call
+                console.log(detailsURL); // use venue id to get the photosURL for ajax call
 
                 var venueName = pickRandomDate.venue.name;
 
@@ -99,26 +101,47 @@ $(document).ready(function () {
                 $("#googlemap").attr("src", newSrc);
 
 
-                // Nest a second ajax call to get the photo to render
-                function getPhoto() {
+
+                function getDetails() {
                     $.ajax({
-                        url: photosURL,
+                        url: detailsURL,
                         method: "GET",
-                    }).then(function (photoData) {
+                    }).then(function (details){
+                        console.log(details);
 
-                        var photo = photoData.response.photos.items[0];
-                        console.log(photo);
+                        // get to the photos property
+                        var photo = details.response.venue.photos.groups[0].items[0];
 
+                        // the actual photo url to add to <img>
                         photoImg = photo.prefix + "300x300" + photo.suffix;
-                        console.log(photoImg);
+
+                        // get to the rating property
+                        var rating = details.response.venue.rating;
+
+                        // get to the hours of operation property
+                        var hoursOperation = details.response.venue.hours.status;
+                        console.log(hoursOperation);
+
+                        var price = details.response.venue.price.message;
+
+
 
                         // append the photo to the foursquare div
                         $("#foursquare").html("<img src=" + photoImg + ">");
+
+                        $("img").addClass("image-fs");
+
+                        // Add table with info
+                        $("#tablediv").html("<tr><td> Name of Location: </td><td>" + filterVenueName + "</td></tr>" +
+                                               "<tr><td> Rating: </td><td>" + rating + "</td></tr>" +
+                                               "<tr><td> Hours of Operation: </td><td>" + hoursOperation + "</td></tr>" +
+                                               "<tr><td> How Pricey?: </td><td>" + price + "</td></tr>");
                     });
-
                 }
-
-                getPhoto();
+               
+                getDetails();
+               
+               
             });
 
         }
@@ -139,5 +162,6 @@ $(document).ready(function () {
 
 Make a table with all the information about the date idea or venue. Possible categories can include name of venue, rating, prices, hours. */
 
-// pickRandomDate.
+// name is filterVenueName
+// rating is getRating();
 
