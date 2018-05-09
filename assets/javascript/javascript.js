@@ -127,7 +127,8 @@ $(document).ready(function () {
                         console.log(photoImg);
 
                         // append the photo to the foursquare div
-                        $("#foursquare").html("<img src=" + photoImg + ">");
+                        $("#foursquare").html("<img src="  + photoImg + ">");
+                        
                     });
 
                 }
