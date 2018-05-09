@@ -61,7 +61,7 @@ $(document).ready(function () {
                 url: queryURL,
                 method: "GET",
             }).then(function (data) {
-                
+
                 // get the items from the submission results
                 dateItem = data.response.groups[0].items;
 
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
                 var filterVenueName = venueName.replace(/&/g, "and");
                 // Assign the value of our the user's selection in the dropdown to a variable
-                
+
                 var mapsIframe = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDKcsgN-w_udSFRh-gzsY0CzArq7fMo-68&q=";
 
                 newSrc = mapsIframe.concat(filterVenueName);
@@ -106,7 +106,7 @@ $(document).ready(function () {
                     $.ajax({
                         url: detailsURL,
                         method: "GET",
-                    }).then(function (details){
+                    }).then(function (details) {
                         console.log(details);
 
                         // get to the photos property
@@ -129,33 +129,35 @@ $(document).ready(function () {
                         // append the photo to the foursquare div
                         $("#foursquare").html("<img src=" + photoImg + ">");
 
-                        $("img").addClass("image-fs");
+                    
 
-                        // Add table with info
-                        $("#tablediv").html("<tr><td> Name of Location: </td><td>" + filterVenueName + "</td></tr>" +
-                                               "<tr><td> Rating: </td><td>" + rating + "</td></tr>" +
-                                               "<tr><td> Hours of Operation: </td><td>" + hoursOperation + "</td></tr>" +
-                                               "<tr><td> How Pricey?: </td><td>" + price + "</td></tr>");
+                    $("img").addClass("image-fs");
+
+                    // Add table with info
+                    $("#tablediv").html("<tr><td> Name of Location: </td><td>" + filterVenueName + "</td></tr>" +
+                        "<tr><td> Rating: </td><td>" + rating + "</td></tr>" +
+                        "<tr><td> Hours of Operation: </td><td>" + hoursOperation + "</td></tr>" +
+                        "<tr><td> How Pricey?: </td><td>" + price + "</td></tr>");
+
                     });
-                }
-               
+                 }
+
                 getDetails();
-               
-               
+        
             });
 
         }
 
-
-        
-        
-        
         getVenueId();
 
         e.preventDefault();
     });
 
+
+    
 });
+
+
 
 
 /* Things to do

@@ -46,4 +46,35 @@ body select option {
 #googlemapdiv {
     height: 100%;
 }
+#googlemapdiv {
+    position: relative;
+    padding-bottom: 50%; /*This is the aspect ratio */
+  
+    /* overflow: hidden;*/
+}
+#googlemapdiv iframe {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    float: right;
+    border: none;
+}
 
+
+ 
+ 
+.image-fs  {
+     
+    float: left;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#main-page-buttons {
+    margin-top: 25px;
+    margin-bottom: 30px;
+     
+}
+#images-wrapper {
+ width: 100%;
+}
