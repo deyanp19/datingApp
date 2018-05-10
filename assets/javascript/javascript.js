@@ -23,8 +23,7 @@ $(document).ready(function () {
     var client_key = "client_secret=QL0A3ZJS3WVJZ5NGZLTTNKNVG2FWE0T2SFSPYOCHUNT01TJB&";
     var currentSelection;
     var location;
-
-
+    
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -36,11 +35,12 @@ $(document).ready(function () {
     function showPosition(position) {
         location = position.coords.latitude.toFixed(2) + "," + position.coords.longitude.toFixed(2);
     }
-
+    
     getLocation();
     
+    
     // Gets the value of the current category for the date as a string
-    $("#submit-btn").click(function (e) {
+    $("#submit-btn").click(function(e) {
 
         currentSelection = $(".custom-select select").val();
         console.log(currentSelection);

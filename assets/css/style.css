@@ -1,6 +1,6 @@
-/*  * {
+ * {
     outline: 1px solid red;
-}   */
+}  
 
 html {
     background-image: url("../images/mainimg.png");
@@ -35,6 +35,11 @@ body select {
     appearance: none; /* this is must */ 
     -webkit-appearance: none; 
     -moz-appearance: none; } /* body select.select_box option */ 
+
+.main-container {
+    min-height: 100vh;
+}
+
 
 .custom-select {
     display: inline-block;
