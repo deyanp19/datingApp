@@ -138,9 +138,11 @@ $(document).ready(function () {
                         "<tr><td> Rating: </td><td>" + rating + "</td></tr>" +
                         "<tr><td> Hours of Operation: </td><td>" + hoursOperation + "</td></tr>" +
                         "<tr><td> How Pricey?: </td><td>" + price + "</td></tr>");
-
+                        
                     });
+    
                  }
+                
 
                 getDetails();
         
@@ -152,7 +154,6 @@ $(document).ready(function () {
 
         e.preventDefault();
     });
-
 
     
 });

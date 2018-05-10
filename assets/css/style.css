@@ -43,11 +43,16 @@ body select option {
     padding: 0 4px;
 } 
 
+ 
 #googlemapdiv {
-    height: 100%;
+    
+    
+    
 }
 #googlemapdiv {
     position: relative;
+    margin-bottom: 50px;
+    height: 100%;
     padding-bottom: 50%; /*This is the aspect ratio */
   
     /* overflow: hidden;*/
@@ -58,23 +63,62 @@ body select option {
     height: 100% !important;
     float: right;
     border: none;
+    border-radius: 16px;
+     
 }
 
 
  
  
 .image-fs  {
-     
+    border-radius: 16px;
     float: left;
     width: 100% !important;
     height: 100% !important;
+    margin-bottom: 200px;
+    margin-top: 10px;
 }
-
+#submit-btn {
+    border-radius: 16px;
+}
 #main-page-buttons {
     margin-top: 25px;
-    margin-bottom: 30px;
-     
+ 
+}
+/*added button formatting*/
+#btn-give-idea {
+    border-radius: 16px;
+    font-weight: 700;
 }
 #images-wrapper {
  width: 100%;
+}
+#tablediv {
+    background-color: rgba(255, 255, 255, 0.486);
+    font-size: 20px;
+    border-radius: 16px;
+}
+#btn-give-idea {
+    margin-top: 100px;
+     
+}
+/*added formating of the table*/
+tr:nth-child(1) {
+    color: rgba(0, 0, 0, 0.775);
+    font-size: 1.2em;
+    text-shadow: 1px 2px grey;
+}
+tr:nth-child(2) {
+    color: rgba(247, 8, 8, 0.72);
+     
+    text-shadow: 0px 2px grey;
+}
+
+td:first-child {
+    font-weight: 700;
+}
+
+nav {
+    border-radius: 26px;
+     
 }
