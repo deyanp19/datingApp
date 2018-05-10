@@ -22,7 +22,23 @@ $(document).ready(function () {
     var client_id = "client_id=E25VOFWZGUJNVIDM5O5UR2WINJNWF0CAKHVWRW1VP1TCMLV4&";
     var client_key = "client_secret=QL0A3ZJS3WVJZ5NGZLTTNKNVG2FWE0T2SFSPYOCHUNT01TJB&";
     var currentSelection;
+    var location;
 
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            location = "near=Chicago,IL";
+        }
+    }
+
+    function showPosition(position) {
+        location = position.coords.latitude.toFixed(2) + "," + position.coords.longitude.toFixed(2);
+    }
+
+    getLocation();
+    
     // Gets the value of the current category for the date as a string
     $("#submit-btn").click(function (e) {
 
@@ -30,7 +46,10 @@ $(document).ready(function () {
         console.log(currentSelection);
 
         // Create the query string for the GET method to retrieve our json object
-        var queryURL = "https://api.foursquare.com/v2/venues/explore/?near=Chicago,IL&venuePhotos=1&limit=20&section=" + currentSelection + "&time=any&" + client_id + client_key + "v=20131124"
+      /*   var queryURL = "https://api.foursquare.com/v2/venues/explore/?near=Chicago,IL&venuePhotos=1&limit=20&section=" + currentSelection + "&time=any&" + client_id + client_key + "v=20131124"
+        console.log(queryURL); */
+
+        var queryURL = "https://api.foursquare.com/v2/venues/explore/?" + "ll=" + location + "&venuePhotos=1&limit=20&section=" + currentSelection + "&time=any&" + client_id + client_key + "v=20131124"
         console.log(queryURL);
 
         var detailsURL;
@@ -51,6 +70,8 @@ $(document).ready(function () {
         // Will need a venue Id from foursquare to get photo of the venue
         var venueID;
 
+        // make sure the location works
+        console.log(location);
 
 
 
@@ -81,8 +102,6 @@ $(document).ready(function () {
                 detailsURL = "https://api.foursquare.com/v2/venues/" + venueID + "?" + client_id + client_key + "v=20131124";
 
 
-
-
                 console.log(data);
                 console.log(dateList); // array list of possible choices
                 console.log(randomInt); // integer to pick the random object
@@ -109,26 +128,50 @@ $(document).ready(function () {
                     }).then(function (details) {
                         console.log(details);
 
-                        // get to the photos property
-                        var photo = details.response.venue.photos.groups[0].items[0];
+                        var photo;
+                        var rating;
+                        var hoursOperation;
+                        var price;
 
-                        // the actual photo url to add to <img>
-                        photoImg = photo.prefix + "300x300" + photo.suffix;
+                        if (currentSelection === "outdoors") {
+                            photo = details.response.venue.photos.groups[0].items[0];
+                            photoImg = photo.prefix + "300x300" + photo.suffix;
+                            rating = details.response.venue.rating;
+                            hoursOperation = "unknown";
+                            price = "Free";
+                            $("#foursquare").html("<img src=" + photoImg + ">");
 
-                        // get to the rating property
-                        var rating = details.response.venue.rating;
+                        } else {
+                            // get to the photos property
+                            photo = details.response.venue.photos.groups[0].items[0];
 
-                        // get to the hours of operation property
-                        var hoursOperation = details.response.venue.hours.status;
-                        console.log(hoursOperation);
+                            // the actual photo url to add to <img>
+                            photoImg = photo.prefix + "300x300" + photo.suffix;
 
-                        var price = details.response.venue.price.message;
+                            // append the photo to the foursquare div
+                            $("#foursquare").html("<img src=" + photoImg + ">");
 
+                            // get to the rating property
+                            rating = details.response.venue.rating;
 
+                            // get to the hours of operation property
+                            try {
+                                hoursOperation = details.response.venue.hours.status;
+                            } catch (e) {
+                                hoursOperation = "unknown";
+                            }
 
-                        // append the photo to the foursquare div
-                        $("#foursquare").html("<img src=" + photoImg + ">");
+                            console.log(hoursOperation);
+                            
+                            try {
+                                price = details.response.venue.price.message;
+                            } catch (e) {
+                                price = "unknown";
+                            }
 
+ 
+
+                        }
                     
 
                     $("img").addClass("image-fs");
@@ -137,7 +180,7 @@ $(document).ready(function () {
                     $("#tablediv").html("<tr><td> Name of Location: </td><td>" + filterVenueName + "</td></tr>" +
                         "<tr><td> Rating: </td><td>" + rating + "</td></tr>" +
                         "<tr><td> Hours of Operation: </td><td>" + hoursOperation + "</td></tr>" +
-                        "<tr><td> How Pricey?: </td><td>" + price + "</td></tr>");
+                        "<tr><td> Cost: </td><td>" + price + "</td></tr>");
 
                     });
                  }
