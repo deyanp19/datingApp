@@ -16,17 +16,6 @@
 
 
 $(document).ready(function () {
-    var coffeeArr = [
-        "q=Coffee+Lab,Evanston+IL",
-        "q=Backlot+Coffee,Evanston+IL",
-        "q=Unicorn+Cafe,Evanston+IL",
-        "q=Brothers+K+Coffeehouse,Evanston+IL",
-        "q=Peet's+Coffee,Evanston+IL",
-    ];
-
-    var mapsIframe = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDKcsgN-w_udSFRh-gzsY0CzArq7fMo-68&";
-
-
 
     /* https://igx.4sqi.net/img/user/100x100/QYGHTN2KNPTTUIEF.jpg */
 
@@ -37,15 +26,14 @@ $(document).ready(function () {
     // Gets the value of the current category for the date as a string
     $("#submit-btn").click(function (e) {
 
+        currentSelection = $(".custom-select select").val();
+        console.log(currentSelection);
 
         // Create the query string for the GET method to retrieve our json object
         var queryURL = "https://api.foursquare.com/v2/venues/explore/?near=Chicago,IL&venuePhotos=1&limit=20&section=" + currentSelection + "&time=any&" + client_id + client_key + "v=20131124"
         console.log(queryURL);
 
-
-
-
-
+        var detailsURL;
         var photosURL;
         var photoImg;
         // Empty array to push our random date list to
@@ -64,10 +52,6 @@ $(document).ready(function () {
         var venueID;
 
 
-        var currentSelection = $(".custom-select select").val();
-        console.log(currentSelection);
-
-
 
 
         // Create a function for the first api call to retrieve a specific venue ID
@@ -77,7 +61,7 @@ $(document).ready(function () {
                 url: queryURL,
                 method: "GET",
             }).then(function (data) {
-                
+
                 // get the items from the submission results
                 dateItem = data.response.groups[0].items;
 
@@ -94,60 +78,92 @@ $(document).ready(function () {
 
                 photosURL = "https://api.foursquare.com/v2/venues/" + venueID + "/photos?" + client_id + client_key + "v=20131124";
 
+                detailsURL = "https://api.foursquare.com/v2/venues/" + venueID + "?" + client_id + client_key + "v=20131124";
+
+
+
+
+                console.log(data);
                 console.log(dateList); // array list of possible choices
                 console.log(randomInt); // integer to pick the random object
                 console.log(pickRandomDate); // pick the venue
                 console.log(venueID); // get the venue id --> necessary for ajax call for photo
-                console.log(photosURL); // use venue id to get the photosURL for ajax call
+                console.log(detailsURL); // use venue id to get the photosURL for ajax call
 
+                var venueName = pickRandomDate.venue.name;
 
+                var filterVenueName = venueName.replace(/&/g, "and");
                 // Assign the value of our the user's selection in the dropdown to a variable
-                
 
-                if (currentSelection === "coffee") {
-                    var randomCoffee = coffeeArr[Math.floor(coffeeArr.length * Math.random())];
-                    console.log('this is our random coffee selection!!', randomCoffee);
-                    newSrc = mapsIframe.concat(randomCoffee);
-                    $("#googlemap").attr("src", newSrc);
+                var mapsIframe = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDKcsgN-w_udSFRh-gzsY0CzArq7fMo-68&q=";
 
-                };//end "coffee" if statement
+                newSrc = mapsIframe.concat(filterVenueName);
+                $("#googlemap").attr("src", newSrc);
 
 
-                // Nest a second ajax call to get the photo to render
-                function getPhoto() {
+
+                function getDetails() {
                     $.ajax({
-                        url: photosURL,
+                        url: detailsURL,
                         method: "GET",
-                    }).then(function (photoData) {
+                    }).then(function (details) {
+                        console.log(details);
 
-                        var photo = photoData.response.photos.items[0];
-                        console.log(photo);
+                        // get to the photos property
+                        var photo = details.response.venue.photos.groups[0].items[0];
 
+                        // the actual photo url to add to <img>
                         photoImg = photo.prefix + "300x300" + photo.suffix;
-                        console.log(photoImg);
+
+                        // get to the rating property
+                        var rating = details.response.venue.rating;
+
+                        // get to the hours of operation property
+                        var hoursOperation = details.response.venue.hours.status;
+                        console.log(hoursOperation);
+
+                        var price = details.response.venue.price.message;
+
+
 
                         // append the photo to the foursquare div
-                        $("#foursquare").html("<img src="  + photoImg + ">");
-                        
+                        $("#foursquare").html("<img src=" + photoImg + ">");
+
+                    
+
+                    $("img").addClass("image-fs");
+
+                    // Add table with info
+                    $("#tablediv").html("<tr><td> Name of Location: </td><td>" + filterVenueName + "</td></tr>" +
+                        "<tr><td> Rating: </td><td>" + rating + "</td></tr>" +
+                        "<tr><td> Hours of Operation: </td><td>" + hoursOperation + "</td></tr>" +
+                        "<tr><td> How Pricey?: </td><td>" + price + "</td></tr>");
+
                     });
+                 }
 
-                }
-
-                getPhoto();
+                getDetails();
+        
             });
 
         }
-
 
         getVenueId();
 
         e.preventDefault();
     });
 
+
+    
 });
+
+
 
 
 /* Things to do
 
-Make a table with all the information about the date idea or venue. Possible categories can include name of venue, rating, prices, hours, and location. */
+Make a table with all the information about the date idea or venue. Possible categories can include name of venue, rating, prices, hours. */
+
+// name is filterVenueName
+// rating is getRating();
 

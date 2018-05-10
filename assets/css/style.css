@@ -48,16 +48,16 @@ body select option {
 }
 #googlemapdiv {
     position: relative;
-    padding-bottom: 50%; // This is the aspect ratio */
+    padding-bottom: 50%; /*This is the aspect ratio */
   
     /* overflow: hidden;*/
 }
 #googlemapdiv iframe {
     position: absolute;
- 
     width: 100% !important;
     height: 100% !important;
     float: right;
+    border: none;
 }
 
 
