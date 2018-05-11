@@ -38,12 +38,14 @@ $(document).ready(function () {
         location = position.coords.latitude.toFixed(2) + "," + position.coords.longitude.toFixed(2);
     }
     
-   
+    getLocation();
     
     
     // Gets the value of the current category for the date as a string
     $("#submit-btn").click(function(e) {
-        getLocation();
+        
+
+
 
         currentSelection = $(".custom-select select").val();
         console.log(currentSelection);
@@ -138,21 +140,21 @@ $(document).ready(function () {
 
                         if (currentSelection === "outdoors") {
                             photo = details.response.venue.photos.groups[0].items[0];
-                            photoImg = photo.prefix + "300x300" + photo.suffix;
+                            photoImg = photo.prefix + "500x500" + photo.suffix;
                             rating = details.response.venue.rating;
                             hoursOperation = "unknown";
                             price = "Free";
-                            $("#foursquare").html("<img src=" + photoImg + ">");
+                            $("#foursquare").html("<img class='responsive-img' src=" + photoImg + ">");
 
                         } else {
                             // get to the photos property
                             photo = details.response.venue.photos.groups[0].items[0];
 
                             // the actual photo url to add to <img>
-                            photoImg = photo.prefix + "300x300" + photo.suffix;
+                            photoImg = photo.prefix + "500x500" + photo.suffix;
 
                             // append the photo to the foursquare div
-                            $("#foursquare").html("<img src=" + photoImg + ">");
+                            $("#foursquare").html("<img class='responsive-img' src=" + photoImg + ">");
 
                             // get to the rating property
                             rating = details.response.venue.rating;

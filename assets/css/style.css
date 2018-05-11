@@ -54,13 +54,22 @@ body select option {
 #googlemapdiv {
     height: 100%;
     position: relative;
-  
-    /* overflow: hidden;*/
+    margin-top: 10px;
+    overflow: hidden;
+    padding-top: 56.25%;
 }
+
 #googlemapdiv iframe {
-    width: 300px !important;
-    height: 300px !important;
-    border: none;
+   /*  width: 300px;
+    height: 300px;
+    border: none; */
+    border-radius: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
  
 .foursquare  {     
@@ -69,38 +78,58 @@ body select option {
 }
 
 .image-fs {
-    max-width: 300px;
-    height: 300px;
+    max-width: 500px;
+    height: 500px;
+    border-radius: 16px;
+    margin-top: 10px;
+}
+
+#submit-btn {
+    border-radius: 16px;
 }
 
 #main-page-buttons {
     margin-top: 25px;
-    margin-bottom: 30px;
-     
+ 
 }
+
+/*added button formatting*/
+#btn-give-idea {
+    border-radius: 16px;
+    font-weight: 700;
+}
+
 #images-wrapper {
-    width: 100%;
-}
-
-
-.tableinfo {
-    margin: 50px auto;
+ width: 100%;
 }
 
 #tablediv {
-    background-color: white;
-    font-size: 18px;
-    font-weight: bolder;
-    justify-content: right;
-    opacity: 0.8;
-    border: 2px solid black;
+    background-color: rgba(255, 255, 255, 0.486);
+    font-size: 20px;
+    border-radius: 16px;
 }
 
-#tablediv tr {
-    border: 1px solid black;
+#btn-give-idea {
+    margin-top: 100px;
+     
+}
+/*added formating of the table*/
+tr:nth-child(1) {
+    color: rgba(0, 0, 0, 0.775);
+    font-size: 1.2em;
+    text-shadow: 1px 2px grey;
+}
+tr:nth-child(2) {
+    color: rgba(247, 8, 8, 0.72);
+     
+    text-shadow: 0px 2px grey;
 }
 
-#tablediv tr td {
-    text-align: left;
-    padding: 20px;
+td:first-child {
+    font-weight: 700;
+}
+
+nav {
+    border-radius: 26px;
+     
 }
