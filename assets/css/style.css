@@ -133,3 +133,20 @@ nav {
     border-radius: 26px;
      
 }
+
+.page-footer{
+    position:fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+h5{
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom:0px;
+    background-color: rgba(255, 255, 255, 0.63);
+    border-radius: 16px;
+    width:80%;
+    margin:0 auto;
+    margin-top:100px;
+}
