@@ -1,7 +1,7 @@
 # Project Title
 
 DIG (Dating Idea Generator) is an application that generates a random date idea when you need a quick spontaneous date venue. 
-
+https://deyanp19.github.io/datingApp/
 
 ![Alt text](assets/images/digapp.png "DIG APPLICATION");
 ## Getting Started
